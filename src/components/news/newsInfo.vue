@@ -1,12 +1,6 @@
 <template>
   <div>
-    <!-- mint-ui 头部返回 -->
-    <mt-header title="图文详情" class="seconde-title" fixed>
-      <router-link to="/news/newsList" slot="left">
-        <mt-button icon="back">返回</mt-button>
-      </router-link>
-    </mt-header>
-    <div class="detail return-nav-bar">
+    <div class="detail">
       <div class="detail-header">
         <div class="detail-title">{{newsInfoData.title}}</div>
         <div class="detail-time">
@@ -18,7 +12,7 @@
       <hr>
       <div class="detail-content" v-html="newsInfoData.content">
       </div>
-      <comment :newsId="newsId"></comment>
+      <comment v-bind="{api:'/api/getcomments/'+this.newsId}"></comment>
     </div>
     
   </div>
@@ -39,7 +33,7 @@ export default {
     // 获取图文详情
     getNewsInfoData () {
       var url = this.$common.baseUrl + '/api/getnew/' + this.newsId
-      console.log(url)
+      // console.log(url)
       this.$http.get(url).then(function (res) {
         if (res.status !== 200) {
           this.$common.Toast(res.body.message)

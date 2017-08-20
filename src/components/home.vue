@@ -1,8 +1,10 @@
 <template>
   <div>
+  <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-if="isShow"></vue-loading>
     <!-- mint-ui 轮播图 -->
+    
     <mt-swipe :auto="5000" class="home-swipe" :show-indicators="false">
-      <mt-swipe-item v-for="(item,index) in swipeImagesData" :key="index"><a :href="item.url"><img :src="item.img" alt=""></a></mt-swipe-item>
+      <mt-swipe-item v-for="(item,index) in swipeImagesData" :key="index"><a href="javascript:;"><img :src="item.url" alt=""></a></mt-swipe-item>
     </mt-swipe>
     <!-- mui 九宫格 -->
     <div class="mui-content">
@@ -10,19 +12,19 @@
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/news/newsList">
                     <span class="mui-icon mui-icon-home"></span>
                     <div class="mui-media-body">新闻资讯</div></router-link></li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/photos/">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/photo/photoList">
                     <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
                     <div class="mui-media-body">图片分享</div></router-link></li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/goods/">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/good/goodList">
                     <span class="mui-icon mui-icon-chatbubble"></span>
                     <div class="mui-media-body">商品购买</div></router-link></li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/feedbacks/">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/feedback">
                     <span class="mui-icon mui-icon-location"></span>
                     <div class="mui-media-body">留言反馈</div></router-link></li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/videos/">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/video">
                     <span class="mui-icon mui-icon-search"></span>
                     <div class="mui-media-body">视频专区</div></router-link></li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/contacts/">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/contactUs">
                     <span class="mui-icon mui-icon-phone"></span>
                     <div class="mui-media-body">联系我们</div></router-link></li>
         </ul> 
@@ -34,6 +36,7 @@
 export default {
   data () {
     return {
+      isShow:true,
       swipeImagesData: []
     }
   },
@@ -43,12 +46,15 @@ export default {
   methods: {
     // 获取轮播图图片信息
     getSwipeImages () {
-      var url = this.$common.baseUrl + '/api/getlunbo'
+      // var url = this.$common.baseUrl + '/api/getlunbo'
+      var url = this.$common.gankApi + '/2/10';
+
       this.$http.get(url).then(function (res) {
         if (res.status !== 200) {
-          this.$common.Toast(res.body.message)
+          this.$common.Toast(res.body)
         } else {
-          this.swipeImagesData = res.body.message
+          this.swipeImagesData = res.body.results
+          this.isShow =false;
         }
       }, function (res) {
         this.$common.Toast(res.status)
