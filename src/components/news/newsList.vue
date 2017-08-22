@@ -1,159 +1,112 @@
 <template>
-  <div >
-    <!-- mui 图文列表 -->
-    <div class="mui-content">
-      <ul class="mui-table-view">
-          <li class="mui-table-view-cell mui-media" v-for="(v,i) in newsListData" :key="i">
-              <router-link v-bind="{to:'/news/newsList/' + v.id}">
-                  <img class="mui-media-object mui-pull-left news-image" :src="v.img_url" >
-                  <div class="mui-media-body">
-                      <div class="news-title">{{v.title}}</div>
-                      <p class='mui-ellipsis news-abstract'>{{v.zhaiyao}}</p>
-                      <div class="news-time">
-                        <span>发布时间:{{v.add_time | datefmt('YYYY-MM-DD HH:mm:ss')}}</span>
-                        <span class="news-click">点击数:{{v.click}}</span>
-                      </div>
-                  </div>
-              </router-link>
-          </li>
-      </ul>
+    <div >
+        <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading>
+        <ul class="mui-table-view" v-show="!isShow">
+            <li v-for="item in list" class="mui-table-view-cell mui-media">
+                <router-link v-bind="{to:'/news/newsinfo/'+item.id}">
+                    <img class="mui-media-object mui-pull-left" :src="item.img_url">
+                    <div class="mui-media-body">
+                        {{item.title}}
+                        <p class='mui-ellipsis'>{{item.zhaiyao}}</p>
+                        <div class="ft">
+                            <span>发表时间:2017-7-20</span>
+                            <span class="click">点击数:{{item.click}}</span>
+                        </div>
+                    </div>
+                </router-link>
+            </li>
+    
+        </ul>
     </div>
-  </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      newsListData: [/*
 
-        {
-        "id": 13,
-        "title": "1季度多家房企利润跌幅超50% 去库存促销战打响",
-        "add_time": "2015-04-16T03:50:28.000Z",
-        "zhaiyao": "房企一季度销售业绩已经陆续公布，克而瑞研究中心统计",
-        "click": 1,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161149414479.jpg"
-        },
-        {
-        "id": 14,
-        "title": "买房还是炒股，2015年买房无法拒绝的5大理由",
-        "add_time": "2015-04-16T04:05:34.000Z",
-        "zhaiyao": "转眼间2015年已经过去了4个月，在这短短的四个月",
-        "click": 2,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161205596364.jpg"
-        },
-        {
-        "id": 15,
-        "title": "抢先实拍猎豹CS10 霸气时尚2.0T涡轮增压",
-        "add_time": "2016-12-07T08:49:04.000Z",
-        "zhaiyao": "在SUV当道的天下，许多自主品牌相继推出了旗下多款",
-        "click": 1,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161218505373.jpg"
-        },
-        {
-        "id": 16,
-        "title": "长城汽车不走高端很快就会死 哈弗H8卷土重来",
-        "add_time": "2015-04-16T04:29:51.000Z",
-        "zhaiyao": "&amp;emsp;&amp;emsp;一辆豪华日",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161229442885.jpg"
-        },
-        {
-        "id": 19,
-        "title": "三星S6造价更高 卖得却比iPhone 6便宜",
-        "add_time": "2015-04-16T04:46:22.000Z",
-        "zhaiyao": "根据调研公司IHS的拆机分析，三星最新推出的旗舰智",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161246140423.jpg"
-        },
-        {
-        "id": 20,
-        "title": "乐视手机遭疯狂吐槽 忽不忽悠看了再说",
-        "add_time": "2015-04-16T04:54:36.000Z",
-        "zhaiyao": "昨天，乐视发布了3款手机，乐1、乐1Pro和乐Ma",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161254335201.jpg"
-        },
-        {
-        "id": 21,
-        "title": "假宽带频现 什么是真正的光纤宽带？",
-        "add_time": "2015-04-16T04:59:15.000Z",
-        "zhaiyao": "&amp;emsp;&amp;emsp;OFwee",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161258558786.jpg"
-        },
-        {
-        "id": 22,
-        "title": "58同城与赶集网最快今日将宣布合并",
-        "add_time": "2015-04-16T05:02:30.000Z",
-        "zhaiyao": "北京时间4月16日消息，腾讯科技通过可靠渠道获知，",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161303162262.jpg"
-        },
-        {
-        "id": 23,
-        "title": "电商下乡，京东、苏宁、阿里农村遭遇战打响？",
-        "add_time": "2015-04-16T05:29:20.000Z",
-        "zhaiyao": "2015年，各大电商逐鹿广袤的农村市场，一场圈地运",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161329185965.jpg"
-        },
-        {
-        "id": 24,
-        "title": "易车总裁邵京宁：汽车行业电商化的三个阶段",
-        "add_time": "2015-04-16T05:37:50.000Z",
-        "zhaiyao": "易车总裁邵京宁在艾瑞年度高峰会议上表示，汽车行业作",
-        "click": 0,
-        "img_url": "http://ofv795nmp.bkt.clouddn.com//upload/201504/16/201504161336598829.jpg"
-        }*/
-      ]
-    }
-  },
-  created () {
-    this.getNewsListData()
-  },
-  methods: {
-    getNewsListData () {
-      var url = this.$common.baseUrl + '/api/getnewslist'
-      this.$http.get(url).then(function (res) {
-        console.log(this)
-        if (res.status !== 200) {
-          this.$common.Toast(res.body.message)
-        } else {
-          this.newsListData = res.body.message
+import { Toast } from 'mint-ui';
+import common from '../../kits/common.js';
+
+export default {
+    data() {
+        return {
+            list: [],
+            isShow:true
         }
-      }, function (res) {
-        this.$common.Toast(res.body.message)
-      })
+    },
+    created() {
+        this.getNewsList();
+    },
+    methods: {
+        // 获取新闻列表资讯
+        getNewsList() {
+            /*
+            this.list = [
+                {
+                    "id": 13,
+                    "title": "1季度多家房企利润跌幅超50% 去库存促销战打响",
+                    "add_time": "2015-04-16T03:50:28.000Z",
+                    "zhaiyao": "房企一季度销售业绩已经陆续公布，克而瑞研究中心统计",
+                    "click": 1,
+                    "img_url": "http://www.webhm.top:8080/upload/201504/16/201504161149414479.jpg"
+                },
+                {
+                    "id": 14,
+                    "title": "买房还是炒股，2015年买房无法拒绝的5大理由",
+                    "add_time": "2015-04-16T04:05:34.000Z",
+                    "zhaiyao": "转眼间2015年已经过去了4个月，在这短短的四个月",
+                    "click": 2,
+                    "img_url": "http://www.webhm.top:8080/upload/201504/16/201504161205596364.jpg"
+                },
+                {
+                    "id": 15,
+                    "title": "抢先实拍猎豹CS10 霸气时尚2.0T涡轮增压",
+                    "add_time": "2016-12-07T08:49:04.000Z",
+                    "zhaiyao": "在SUV当道的天下，许多自主品牌相继推出了旗下多款",
+                    "click": 1,
+                    "img_url": "http://www.webhm.top:8080/upload/201504/16/201504161218505373.jpg"
+                }
+            ]*/
+
+            // 1.0 确定URL
+            const url = this.$common.apidomain + '/api/getnewslist';
+
+            // 2.0 利用$http.get请求数据
+            this.$http.get(url).then(function (response) {
+                // 3.0 获取返回的数据
+                var body = response.body;
+
+                // 4.0 判断响应报文中的状态码，如果是非0则提示用户请求异常
+                if (body.status != 0) {
+                    this.$common.Toast(body.message);
+                    return;
+                }
+
+                // 5.0 将正确数据赋值给list
+                this.list = body.message;
+                this.isShow = false;
+            })
+        }
     }
-  }
 }
 </script>
 
 <style scoped>
+.mui-table-view img {
+    width: 80px;
+    height: 80px;
+}
 
-.news-image{
-  width: 80px;
-  height: 80px;
-  display: inline-block;
+.mui-table-view .mui-media-object {
+    max-width: 80px;
+    line-height: 80px;
 }
-.news-title{
-  font-weight: 900
+
+.ft {
+    margin-top: 1.5em;
+    font-size: 14px;
+    color: #0094ff;
 }
-.news-click{
-  margin-left: 10px;
-}
-.news-abstract{
-  font-size: 14px;
-  margin: 10px 0 5px 0;
-}
-.news-time{
-  font-size: 12px;
-  color: #0094ff
-}
-.mui-table-view .mui-media-object{
-  max-width: 80px;
-  line-height: 80px;
+
+.ft .click {
+    margin-left: 20px;
 }
 </style>
