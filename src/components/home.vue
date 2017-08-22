@@ -49,11 +49,6 @@
 </template>
 
 <script>
-// 使用 mint-ui 中的 Toast组件实现弹窗效果
-import { Toast } from 'mint-ui';
-
-import common from '../kits/common.js'
-
 import silder from '../components/subcom/silder.vue'
 
 export default {
