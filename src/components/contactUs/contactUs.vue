@@ -44,5 +44,6 @@ export default {
      font-size:30px;
      font-weight: 900;
      text-align: center;
+     color:#0094ff; 
 }
 </style>

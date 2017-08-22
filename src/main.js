@@ -21,7 +21,9 @@ import goodsinfo from './components/goods/goodsinfo.vue';
 import goodsdesc from './components/goods/goodsdesc.vue';
 import goodscomment from './components/goods/goodscomment.vue';
 
-import video from './components/video/video.vue';
+import setting from './components/location/setting.vue';
+import map from './components/location/map.vue';
+import musicList from './components/video/musicList.vue';
 import login from './components/account/login.vue';
 
 import feedBack from './components/feedback/feedback.vue';
@@ -33,7 +35,28 @@ var router1 = new vueRouter({
     routes: [
         { path: '/', redirect: '/home' }, // 默认进入home页面(将跟页面重定向到首页home)
         { path: '/home', component: home },
-        { path: '/shopcar', component: shopcar },
+        { 
+            path: '/shopcar', 
+            component: shopcar,
+            meta: { requiresAuth: true },
+            beforeEnter: (to, from, next) => {
+                if (to.meta.requiresAuth) {
+                    // this route requires auth, check if logged in
+                    // if not, redirect to login page.
+                    var info = JSON.parse(localStorage.getItem('userInfo')) || {};
+                    if (!info || info.userName !== 'admin' || info.passWord !== '123') {
+                        next({
+                            path: '/login',
+                            query: { redirect: to.fullPath }
+                        })
+                    } else {
+                        next()
+                    }
+                } else {
+                    next() // 确保一定要调用 next()
+                }
+            }
+        },
         { path: '/news/newslist', component: newslist },
         { path: '/news/newsinfo/:id', component: newsinfo },
         { path: '/photo/photolist', component: photolist },
@@ -45,7 +68,9 @@ var router1 = new vueRouter({
         { path: '/feedback', component: feedBack },
         { path: '/contactUs', component: contactUs },
         { path: '/login', component: login },
-        {path: '/video',component:video},
+        {path:'/setting',component:setting},
+        {path:'/map',component:map},
+        {path: '/musicList',component:musicList},
         {
             path: '/userInfo',
             component: userInfo,
@@ -54,7 +79,7 @@ var router1 = new vueRouter({
                 if (to.meta.requiresAuth) {
                     // this route requires auth, check if logged in
                     // if not, redirect to login page.
-                    var info = JSON.parse(sessionStorage.getItem('userInfo')) || {};
+                    var info = JSON.parse(localStorage.getItem('userInfo')) || {};
                     if (!info || info.userName !== 'admin' || info.passWord !== '123') {
                         next({
                             path: '/login',

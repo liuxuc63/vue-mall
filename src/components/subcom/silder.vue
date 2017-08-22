@@ -85,14 +85,14 @@ export default {
       console.log(url);
       this.$http.get(url).then(function (res) {
         if (res.status !== 200) {
-          this.$common.Toast(res.body)
+          this.$common.Toast('获取图片失败')
         } else {
           this.swipeImagesData = res.body.results;
           console.log(this.swipeImagesData )
           this.isShow =false;
         }
       }, function (res) {
-        this.$common.Toast(res.body)
+        this.$common.Toast('获取图片失败')
       })
     }
   }
@@ -102,7 +102,7 @@ export default {
 <style scoped>
 	.mint-swipe{
 		max-height: 400px;
-    height: 400px;
+    height: 300px;
 	}
 	.mint-swipe-item img{
 		width: 100%;
@@ -110,7 +110,7 @@ export default {
 	.mint-swipe-item{
 		/*background-color: red;*/
 		width: 100%;
-		max-height: 400px;
-    height: 400px;
+		max-height: 300px;
+    height: 300px;
 	}
 </style>

@@ -10,7 +10,7 @@
     </div>
 <!--     <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading> -->
     <!--2.0 图片列表-->
-    <div id='imglist'  v-show="!isShow">
+    <div id='imglist' >
         <ul>
             <li v-for="(item,index) in list" :key='index'>
                 <router-link v-bind="{to:'/photo/photoinfo/'+item.id}">
@@ -145,7 +145,7 @@ export default {
                 // 3.0 将数据复制给this.list
                 this.list = body.message;
             });
-            this.isShow = true;
+            // this.isShow = true;
         }
     }
 }

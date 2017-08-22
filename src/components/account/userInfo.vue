@@ -1,12 +1,12 @@
 <template>
     <div>
-        <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading>
+        <!-- <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading> -->
         <transition name="fade" >
-            <div class="info" v-show="!isShow">
-                <img class="portrait" :src='imageUrl.url' width="200" height="200" />
+            <div class="info">
+                <img class="portrait" src='https://ww1.sinaimg.cn/large/610dc034jw1faj6sozkluj20u00nt75p.jpg' width="200" height="200" />
                 <div class="user-info" >
                   <h1 class="nick">Steve Xu</h1>
-                        <a href="javascript:;" class="logout" @click="logout" v-if="!isLogouting"> [退出]</a>
+                        <a href="javascript:;" class="logout" @click="logout" > [退出]</a>
                 </div>
             </div>
         </transition>
@@ -17,18 +17,17 @@ export default {
   name: 'UserInfo',
   data(){
     return {
-      isLogouting: false,
-      imageUrl:{},
-      isShow:true,
+      imageUrl:{}
+      // isShow:true,
     }
   },
   created(){
-    this.getImage()
+    // this.getImage()
   },
   methods: {
     // 获取用户图像
     getImage(){
-        var rand = parseInt(Math.random()*50) || 1;
+        var rand = parseInt(Math.random()*40) || 1;
         var url = this.$common.gankApi + '/5/' + rand;
         this.$http.get(url).then(function(res){
             if(res.status !== 200){
@@ -42,8 +41,8 @@ export default {
     },
     // 注销
     logout(){
-      sessionStorage.clear();
-      this.isLogouting = true;
+      localStorage.clear();
+      // this.isLogouting = true;
       this.$router.push('/login');
     }
   }
@@ -62,9 +61,4 @@ border-radius: 100%; background-color: #CCCCCC; margin:0 auto 15px;border: 2px s
 .nick{margin-right: 10px;}
 .cut{padding: 0 10px; color:#E9E9E9; font-size: 15px;}
 .logout{color: #2c3e50; display: block; margin-top: 20px;}
-.vue-loading{
-    position: relative;
-    top:200px;
-    margin:0 auto;
-}
 </style>

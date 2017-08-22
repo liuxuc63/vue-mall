@@ -31,9 +31,9 @@
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/video">
+                    <router-link to="/musicList">
                         <span class="mui-icon mui-icon-search"></span>
-                        <div class="mui-media-body">视频专区</div>
+                        <div class="mui-media-body">音乐专区</div>
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -106,6 +106,7 @@ export default {
     width: 50px;
     height: 50px;
     background-repeat: round;
+    border-radius: 50%;
 }
 
 .mui-icon-home:before {

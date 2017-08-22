@@ -1,6 +1,6 @@
 <template>
   <div class="feedback">
-    <div class="fd-tip">您好，很抱歉我们暂时无法为您提供服务，如需帮助，请留言，我们将尽快联系并解决您的问题</div>
+    <div class="fd-tip">您好,如需帮助，请留言，我们将尽快解决您的问题</div>
     <div class="fd-phone">
         <h4>手机号码:</h4>
         <div class="mui-input-row mui-text">
@@ -40,10 +40,12 @@ export default {
 </script>
 <style scoped>
 .feedback{
+  color:#333;
     padding:10px;
 }
 .fd-tip{
-    margin-bottom:20px;
+    padding:20px 0;
+    font-size:16px;
 }
 .fd-phone{
     margin-bottom:10px;

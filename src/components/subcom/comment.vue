@@ -4,15 +4,15 @@
         <!--1.0 实现提交评论数据到服务器的静态结构-->
         <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading>
         <div id="postcomment">
-            <h3>提交评论</h3>
+            <h3 class="comment-title">提交评论</h3>
             <p class="p"></p>
-            <textarea placeholder="请输入您要评论的内容..." v-model="postcontent" ></textarea>
+            <textarea placeholder="请输入您要评论的内容..." v-model="postcontent" rows="5"></textarea>
             <mt-button type="primary" size="large" @click="postcomment">发表</mt-button>
         </div>
     
         <!--2.0 实现获取评论数据列表-->
         <div id="list" v-show="!isShow">
-            <h3>评论列表</h3>
+            <h3 class="comment-title list">评论列表</h3>
             <p class="p"></p>
             <div v-for="(item,index) in list">
                 <div class="title">
@@ -99,8 +99,13 @@ export default {
 }
 </script>
 <style scoped>
+.comment-title{
+    margin-bottom: 20px;
+}
 /* 1.0 实现提交评论样式 */
-
+.comment-title.list{
+    margin-top:10px;
+}
 #postcomment {
     padding: 5px;
 }

@@ -32,6 +32,8 @@ export default {
         login(){
             if(this.account !== '' && this.password !== ''){
                 this.enterLogin();
+            } else {
+                this.$common.Toast('输入用户名或密码错误！');
             }
         },
         enterLogin(){
@@ -39,7 +41,7 @@ export default {
                 userName: this.account,
                 passWord:this.password
             };
-            sessionStorage.setItem('userInfo',JSON.stringify(temp));
+            localStorage.setItem('userInfo',JSON.stringify(temp));
             //设置在登录状态
             this.isLoging = true;
             this.$router.push('/userinfo');

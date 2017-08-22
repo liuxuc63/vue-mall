@@ -7,25 +7,24 @@
 			<div class="title">
 				<h4>{{photoinfo.title}}</h4>
 				<p>
-					2017-7-15 | {{photoinfo.click}}次浏览
+					2017-7-9 | {{photoinfo.click}}次浏览
 				</p>
 				<p class="line"></p>
 			</div>
-			<vue-images :imgs="list"
-                            :modalclose="modalclose"
-                            :keyinput="keyinput"
-                            :mousescroll="mousescroll"
-                            :showclosebutton="showclosebutton"
-                            
-                            :imagecountseparator="imagecountseparator"
-                            :showimagecount="showimagecount"
-                            :showthumbnails="showthumbnails">
-               </vue-images>
-               <!-- :showcaption="showcaption" -->
-			<!--图片详情- 摘要部分-->
-			<p v-html="photoinfo.content"></p>
+            <vue-images :imgs="photoInfoData"
+                :modalclose="modalclose"
+                :keyinput="keyinput"
+                :mousescroll="mousescroll"
+                :showclosebutton="showclosebutton"
+                :showcaption="showcaption"
+                :imagecountseparator="imagecountseparator"
+                :showimagecount="showimagecount"
+                :showthumbnails="showthumbnails" >
+             </vue-images>
+             <!--图片详情- 摘要部分-->
+            <p v-html="photoinfo.content"></p>
 		</div>
-
+        
 		<!--2.0。3 集成评论组件-->
 		<div id="comment"> 
 			<comment :id="id"></comment>
@@ -38,7 +37,7 @@ import vueImages from 'vue-images'
 	// 2.0.0 导入评论组件
 	import comment from '../subcom/comment.vue';
 	export default{
-		name:'info',
+		name:'photo-info',
 		components:{
 			//2.0.1 注册评论组件,
 			comment, 
@@ -48,23 +47,22 @@ import vueImages from 'vue-images'
 			return {
 				id:0,  //图片的id
 				photoinfo :{},
-                list :[
+                photoInfoData :[
                 {imageUrl:'https://ws1.sinaimg.cn/large/610dc034ly1fh7hwi9lhzj20u011hqa9.jpg'},{
                 	imageUrl:'https://ws1.sinaimg.cn/large/610dc034ly1fgllsthvu1j20u011in1p.jpg'
                 },{
                 	imageUrl:'https://ws1.sinaimg.cn/large/610dc034ly1fgj7jho031j20u011itci.jpg'
                 }
 				],
-			  modalclose: true,
-		      keyinput: true,
-		      mousescroll: true,
-		      showclosebutton: true,
-		      showcaption: true,
-		      imagecountseparator: '/',
-		      showimagecount: true,
-		      showthumbnails: true,
-              isActive:true,
-              isShow:true
+			  isShow:true,
+              modalclose: true,
+              keyinput: true,
+              mousescroll: true,
+              showclosebutton: true,
+              showcaption: true,
+              imagecountseparator: '/',
+              showimagecount: true,
+              showthumbnails: true
             }
 		},
 		created(){
@@ -104,14 +102,14 @@ import vueImages from 'vue-images'
 					}
 					// 将正常的逻辑数据赋值给this.list数组
 					// 由于vue-preview组件要求的数据是 {src:,w:,h:}但是服务器响应回来的数据中是没有 w ,h 的，所以只能自己添加了
-					 this.list = res.body.results;
-					this.list.forEach(function(item){
+					 this.photoInfoData = res.body.results;
+					this.photoInfoData.forEach(function(item){
 					// 当前所有图片不管有多大都设置为宽高为400，就会导致图片失真了，所以应该按照图片的实际尺寸来设置
 						item.imageUrl = item.url;
-                        // item.caption = '1'
+                        item.caption = '1';
 						// console.log(item.caption);
 					});
-					// console.log(this.list);
+					// console.log(this.photoInfoData)
                     
 				});
 

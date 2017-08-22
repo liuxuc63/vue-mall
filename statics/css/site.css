@@ -5,4 +5,8 @@ body{
 .router-link-active{
 	color:#007aff;
 }
-
+.vue-loading{
+    position: relative;
+    top:200px;
+    margin:0 auto;
+}

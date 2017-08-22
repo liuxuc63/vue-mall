@@ -15,11 +15,11 @@
 				</li>
 				<li>
 					购买数量:
-                    <addSub v-on:sendProductNum="getSendData"></addSub>
+                    <addSub :num="1"></addSub>
 				</li>
 				<li>
-					<mt-button type="primary" size="small">立即购买</mt-button>
-					<mt-button type="danger" size="small">加入购物车</mt-button>
+					<mt-button type="primary" size="small" @click="payMoneyNow">立即购买</mt-button>
+					<mt-button type="danger" size="small" @click="addCart">加入购物车</mt-button>
 				</li>
 			</ul>
 		</div>
@@ -96,6 +96,12 @@
             getSendData(num){
                 this.receive = num;
                 console.log(num);
+            },
+            addCart(){
+                this.$common.Toast('加入购物车成功！')
+            },
+            payMoneyNow(){
+                this.$router.push('/shopcar')
             }
 		}
 	}
