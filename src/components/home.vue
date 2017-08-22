@@ -33,7 +33,7 @@
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                     <router-link to="/musicList">
                         <span class="mui-icon mui-icon-search"></span>
-                        <div class="mui-media-body">音乐专区</div>
+                        <div class="mui-media-body">音乐欣赏</div>
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">

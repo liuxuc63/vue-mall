@@ -14,7 +14,7 @@
         <div id="list" v-show="!isShow">
             <h3 class="comment-title list">评论列表</h3>
             <p class="p"></p>
-            <div v-for="(item,index) in list">
+            <div v-for="(item,index) in list" v-if="item.content.length!==0">
                 <div class="title">
                     <span>第{{index + 1}}楼:</span>
                     <span>用户：{{item.user_name}}</span>
@@ -54,7 +54,7 @@ export default {
                 return;
             }
             //1.0 确定提交的地址 /api/postcomment/:artid
-            var url = this.$common.apidomain + '/api/postcomment/' + this.id;
+            var url = this.$common.apidomain + '/api/postcomment/' + 21;
             //2.0 利用ajax的post请求将数据提交到指定的地址
             //2.0.1 获取到用户在文本框中填写的评论内容，通过 content: 内容 格式提交到请求报文体中
             this.$http.post(url, { content: this.postcontent }, { emulateJSON: true }).then(function (res) {
@@ -75,7 +75,7 @@ export default {
         getcommentlist(pageindex) {
             pageindex = pageindex || 1;
             // 1.0 确定评论数据的url
-            var url = this.$common.apidomain + '/api/getcomments/' + this.id + '?pageindex=' + pageindex;
+            var url = this.$common.apidomain + '/api/getcomments/' + 21+ '?pageindex=' + pageindex;
             // 2.0 发出ajax请求获取数据即可
             this.$http.get(url).then(function (res) {
                 if (res.status !== 200) {
