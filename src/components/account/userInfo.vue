@@ -35,7 +35,7 @@ export default {
                 return ;
             }
             this.imageUrl = res.body.results[0]
-            console.log(this.imageUrl);
+            // console.log(this.imageUrl);
             this.isShow = false;
         })
     },

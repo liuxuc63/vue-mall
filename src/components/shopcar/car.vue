@@ -72,7 +72,7 @@
         },
         watch:{
             value:function(now){
-                console.log(now);
+                // console.log(now);
                 var len = this.datalist.length,total = 0,temp = 0;
                 for(var i = 0;i < len;i++){
                     temp = now[i] || 0;
@@ -127,7 +127,7 @@
         },
         methods:{
             getNum(num,index){
-                console.log(num,index);
+                // console.log(num,index);
             },
             payMoney(){
                 this.$common.Toast('暂无支付接口');

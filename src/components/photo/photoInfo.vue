@@ -1,8 +1,8 @@
 <template>
 	<div>
-        <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading>
+       <!--  <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading> -->
 	    <!--1.0 实现的是图片详情和缩略图-->
-		<div id="desc" v-show="!isShow">
+		<div id="desc" >
 			<!--图片详情- 标题部分-->
 			<div class="title">
 				<h4>{{photoinfo.title}}</h4>
@@ -54,7 +54,7 @@ import vueImages from 'vue-images'
                 	imageUrl:'https://ws1.sinaimg.cn/large/610dc034ly1fgj7jho031j20u011itci.jpg'
                 }
 				],
-			  isShow:true,
+			  // isShow:true,
               modalclose: true,
               keyinput: true,
               mousescroll: true,
@@ -89,7 +89,7 @@ import vueImages from 'vue-images'
 
                     // 将正常的逻辑数据赋值给this.photoinfo对象
 					this.photoinfo = body.message[0];
-                    this.isShow = false
+                    // this.isShow = false
 				});
 			},
 			// 2.0 获取缩略图数据

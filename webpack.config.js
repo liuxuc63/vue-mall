@@ -1,6 +1,5 @@
 //分离css
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 // 内存html文件
 var htmlwp = require('html-webpack-plugin');
 
@@ -11,12 +10,11 @@ module.exports = {
     entry: {
         app: path.resolve(__dirname, 'src/main.js'), // 项目入口文件
         // 需要分离的第三方包名写在数组中
-        vendors: ['vue', 'vue-images', 'vue-loading-template','vue-resource','vue-router','moment','mint-ui']
+        vendors: ['vue', 'vue-images', 'vue-loading-template', 'vue-resource', 'vue-router', 'moment', 'mint-ui']
     },
     output: {
         path: __dirname + '/dist', // 注意：webpack1.14.0 要求这个路径是一个绝对路径
-        filename: 'build.js',
-        pathinfo:false
+        filename: 'build.js'
     },
     module: {
         loaders: [{
@@ -68,33 +66,26 @@ module.exports = {
             }
         }),
         // 抽取css文件
-        new ExtractTextPlugin('app.css'),
-
+        new ExtractTextPlugin({
+            filename: 'build.min.css',
+            allChunks: true,
+        }),
         // 分离第三方包插件
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors', // 根据入口文件中vendors分离对应的第三方包
-            filename: 'vendors.js' // 生成一个vendor.js文件
+            filename: 'vendors.min.js' // 生成一个vendor.js文件
         }),
 
         // js代码压缩
         new webpack.optimize.UglifyJsPlugin({
-            beautify: false,
-            mangle: {
-                screw_ie8: true,
-                keep_fnames: true
-            },
             compress: {
                 warnings: false,
-                screw_ie8: true
+                drop_console: false
             },
-            comments: false
         }),
         // 删除警告
         new webpack.DefinePlugin({
-            'process.env': {
-                // 注意字符串被引号引起来
-                NODE_ENV: '"production"'
-            }
+            'process.env.NODE_ENV': '"production"',
         })
     ]
 }

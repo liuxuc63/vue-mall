@@ -82,13 +82,13 @@ export default {
     getSwipeImages () {
       // var url = this.$common.baseUrl + '/api/getlunbo'
       var url = this.$common.gankApi + '/5/40';
-      console.log(url);
+      // console.log(url);
       this.$http.get(url).then(function (res) {
         if (res.status !== 200) {
           this.$common.Toast('获取图片失败')
         } else {
           this.swipeImagesData = res.body.results;
-          console.log(this.swipeImagesData )
+          // console.log(this.swipeImagesData )
           this.isShow =false;
         }
       }, function (res) {
@@ -101,7 +101,7 @@ export default {
 
 <style scoped>
 	.mint-swipe{
-		max-height: 400px;
+		max-height: 300px;
     height: 300px;
 	}
 	.mint-swipe-item img{
@@ -110,7 +110,7 @@ export default {
 	.mint-swipe-item{
 		/*background-color: red;*/
 		width: 100%;
-		max-height: 300px;
+		max-height:300px;
     height: 300px;
 	}
 </style>

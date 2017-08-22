@@ -95,7 +95,7 @@
             // 接受子组件传递过来的值
             getSendData(num){
                 this.receive = num;
-                console.log(num);
+                // console.log(num);
             },
             addCart(){
                 this.$common.Toast('加入购物车成功！')

@@ -51,7 +51,7 @@
 		},
 		watch:{
 			'$common':function(now,old){
-				console.log(now,old);
+				// console.log(now,old);
 			},
 			'$route':function(newroute,oldroute){
 				if(newroute.path.toLowerCase() === '/home'
