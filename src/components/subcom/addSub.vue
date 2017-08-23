@@ -1,7 +1,7 @@
 <template>
     <div class="mui-numbox" >
         <button class="mui-btn mui-btn-numbox-minus" type="button" @click="sub">-</button>
-        <input class="mui-input-numbox" type="number" v-model="num"/>
+        <input class="mui-input-numbox" type="number" v-model="number"/>
         <button class="mui-btn mui-btn-numbox-plus" type="button" @click="add">+</button>
     </div>
 </template>
@@ -12,9 +12,9 @@ export default {
             number:1
         }
     },
-    props:['num'],
+    // props:['num'],
     created(){
-        this.num = this.num || 1;
+        // this.num = this.num || 1;
     },
   methods:{
     sub(){

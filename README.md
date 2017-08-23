@@ -28,6 +28,14 @@
 - [x] 购物车
 - [x] 百度地图定位
 
+## 非父子组件传值
+
+定义一个 vm.js
+import Vue from 'vue';
+export var vm = new Vue();
+
+goodInfo.vue   vm
+
 ## License
 
 [MIT](LICENSE)

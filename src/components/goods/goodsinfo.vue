@@ -15,7 +15,11 @@
 				</li>
 				<li>
 					购买数量:
-                    <addSub :num="1"></addSub>
+                    <addSub v-on:sendProductNum="getProductNum"></addSub>
+                    <transition name="show" @before-enter="beforeEnter" @enter="Enter" 
+                    @after-enter="afterEnter">
+                        <div class="info-ball" v-if="isShow"></div>
+                    </transition>
 				</li>
 				<li>
 					<mt-button type="primary" size="small" @click="payMoneyNow">立即购买</mt-button>
@@ -50,6 +54,8 @@
 <script>
     import addSub from '../subcom/addSub.vue';
 	import silder from '../subcom/silder.vue';
+    import {vm,COUNTSTR} from '../../kits/vm.js';
+    import {setItem,countObj} from '../../kits/localStorage.js';
 	export default{
 		components:{silder,addSub},
 		data(){
@@ -57,7 +63,8 @@
 				id : 0,  //表示商品id
 				imgs:[],
                 info:{},
-                receive:0
+                receive:0,
+                isShow:false
 			}
 		},
 		created(){
@@ -93,16 +100,37 @@
 				});
 			},
             // 接受子组件传递过来的值
-            getSendData(num){
+            getProductNum(num){
                 this.receive = num;
                 // console.log(num);
             },
+            // 将数字传递到APP.vue中
             addCart(){
-                this.$common.Toast('加入购物车成功！')
+                //触发事件
+                vm.$emit(COUNTSTR,this.receive);
+                // 存储数据
+                countObj.goodId = this.id;
+                countObj.count = this.receive;
+                setItem(countObj);
+                this.isShow = !this.isShow;
             },
             payMoneyNow(){
                 this.$router.push('/shopcar')
+            },
+            //动画钩子函数
+            beforeEnter(el){
+                el.style.transform = 'translate(0px,0px)';
+            },
+            Enter(el,done){
+                el.offsetWidth;
+                el.style.transform = 'translate(90px,417px)';
+                done();
+            },
+            afterEnter(el){
+                // el.style.transform = 'translate(0px,0px)';
+                this.isShow = !this.isShow;
             }
+
 		}
 	}
 
@@ -144,5 +172,16 @@
 
 #other .imgdesc{
     margin-bottom: 20px;
+}
+.info-ball{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #f00;
+    position: absolute;
+    top:480px;
+    left:147px;
+    transition:all 0.4s ease;
+    z-index: 100000;
 }
 </style>

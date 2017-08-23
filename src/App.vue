@@ -23,7 +23,7 @@
 
 			<router-link class="mui-tab-item" to="/shopcar">
 				<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-					<!-- <span class="mui-badge" v-text="cartNumber"></span> -->
+					<span class="mui-badge" id="cartNumber">0</span>
 				</span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
@@ -36,6 +36,14 @@
 </template>
 
 <script>
+	import {vm,COUNTSTR} from './kits/vm.js';
+	// 注册事件
+	vm.$on(COUNTSTR,function(count){
+		// console.log(count);
+		// 将count值追加到购物车上
+		var cartNumberObj = document.getElementById('cartNumber');
+		cartNumberObj.innerText = parseInt(cartNumberObj.innerText) + count;
+	})
 	// 负责导出 .vue这个组件对象(它本质上是一个Vue对象,所以Vue中该定义的元素都可以使用)
 	export default{  // es6的导出对象的写法
 		data(){  //等价于 es5的 data:function(){

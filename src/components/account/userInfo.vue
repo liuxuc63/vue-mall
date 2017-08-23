@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <vue-loading type="spiningDubbles" color="#d9544e" :size="{ width: '50px', height: '50px' }" v-show="isShow"></vue-loading> -->
         <transition name="fade" >
             <div class="info">
                 <img class="portrait" src='https://ww1.sinaimg.cn/large/610dc034jw1faj6sozkluj20u00nt75p.jpg' width="200" height="200" />
@@ -36,7 +35,7 @@ export default {
             }
             this.imageUrl = res.body.results[0]
             // console.log(this.imageUrl);
-            this.isShow = false;
+            // this.isShow = false;
         })
     },
     // 注销
