@@ -50,14 +50,13 @@ export default {
 
 <style scoped>
 .info{background: #fff; width: 100%; height: 600px; color: #2c3e50; text-align: center; padding-top: 170px;}
-.portrait{width: 200px; height: 200px; overflow:hidden; -webkit-border-radius: 100%;
--moz-border-radius: 100%;
--ms-border-radius: 100%;
--o-border-radius: 100%; 
-border-radius: 100%; background-color: #CCCCCC; margin:0 auto 15px;border: 2px solid #2c3e50; display: block;}
+.portrait{
+  width: 200px; height: 200px; overflow:hidden; 
+border-radius: 100%; background-color: #ccc; margin:0 auto 15px;border: 2px solid #2c3e50; display: block;}
 .user-info{margin: 38px 0 0 0; vertical-align: top;}
 .user-info, .w-star, .w-diamond, .nick, .level{display: inline-block;}
-.nick{margin-right: 10px;}
+.nick{margin-right: 10px;
+color:#0094ff;}
 .cut{padding: 0 10px; color:#E9E9E9; font-size: 15px;}
 .logout{color: #2c3e50; display: block; margin-top: 20px;}
 </style>

@@ -106,13 +106,15 @@
             },
             // 将数字传递到APP.vue中
             addCart(){
-                //触发事件
-                vm.$emit(COUNTSTR,this.receive);
+                this.receive = this.receive || 1;
+                
                 // 存储数据
                 countObj.goodId = this.id;
                 countObj.count = this.receive;
                 setItem(countObj);
                 this.isShow = !this.isShow;
+                //触发事件
+                vm.$emit(COUNTSTR,this.receive);
             },
             payMoneyNow(){
                 this.$router.push('/shopcar')

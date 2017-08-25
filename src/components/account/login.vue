@@ -62,9 +62,6 @@ export default {
     min-height: 455px;
     z-index: 10;
     right: 140px;
-    background: #fff;
-    border-radius: 5px;
-    border:1px solid #ddd;
 }
 .login:hover{
     transition: all 0.5s;
@@ -121,7 +118,7 @@ export default {
     height: 80px;
     margin: 120px auto 25px;
     text-align: center;
-    color: #1fcab3;
+    color:#0094ff;
     font-weight: bold;
     font-size: 40px;
 }
@@ -137,9 +134,6 @@ export default {
 .log-text {
     z-index: 2
 }
-
-
-
 .close {
     height: 16px;
     width: 16px;
@@ -166,11 +160,6 @@ export default {
     height: 50px;
     color: #fff;
     font-size: 13px;
-    -webkit-border-radius: 5px;
-    background-color: #3B5999;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
     border-radius: 5px;
     position: relative;
 }
@@ -195,7 +184,8 @@ export default {
 }
 
 .log-email .log-btn {
-    background-color: #50E3CE;
+    /*background-color: #50E3CE;*/
+    background-color: #0094ff;
     text-align: center;
 }
 
@@ -224,14 +214,10 @@ export default {
     overflow: hidden;
     padding: 0 15px;
     font-size: 13px;
-    border: 1px solid #EBEBEB;
+    border: 1px solid #aaa;
     margin: 0 auto 15px;
     height: 48px;
     line-height: 48px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
     border-radius: 5px;
 }
 
