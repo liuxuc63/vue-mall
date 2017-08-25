@@ -81,7 +81,8 @@ export default {
     // 获取轮播图图片信息
     getSwipeImages () {
       // var url = this.$common.baseUrl + '/api/getlunbo'
-      var url = this.$common.gankApi + '/5/40';
+      // var url = this.$common.gankApi + '/5/40';
+      var url = this.$common.gankApi + '/5/45';
       // console.log(url);
       this.$http.get(url).then(function (res) {
         if (res.status !== 200) {

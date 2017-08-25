@@ -39,7 +39,6 @@
 	import {vm,COUNTSTR} from './kits/vm.js';
 	// 注册事件
 	vm.$on(COUNTSTR,function(count){
-		// console.log(count);
 		// 将count值追加到购物车上
 		var cartNumberObj = document.getElementById('cartNumber');
 		cartNumberObj.innerText = parseInt(cartNumberObj.innerText) + count;
@@ -58,9 +57,6 @@
 			}
 		},
 		watch:{
-			'$common':function(now,old){
-				// console.log(now,old);
-			},
 			'$route':function(newroute,oldroute){
 				if(newroute.path.toLowerCase() === '/home'
 				|| newroute.path.toLowerCase() === '/userinfo'

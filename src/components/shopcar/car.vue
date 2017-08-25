@@ -29,6 +29,7 @@
 
 <script>
     import addSub from '../subcom/addSub.vue';
+    import {getProductObject} from '../../kits/localStorage.js';
     export default{
         components:{
             addSub
@@ -85,52 +86,28 @@
                     total += temp * this.datalist[i].cou * this.datalist[i].sell_price;
                 }
                 this.totalAmount = total;
+
             }
         },
-        computed:{
-            /*totalcount:function(){
-                var len = this.datalist.length;
-                var total = 0;
-                for(var i = 0;i < len;i++){
-                    total += Number(this.value[i]) * this.datalist[i].cou 
-                }
-                return total ||0 ;
-            },
-            totalAmount:function(){
-                var len = this.datalist.length;
-                var total = 0;
-                for(var i = 0;i < len;i++){
-                    total += Number(this.value[i]) * this.datalist[i].cou * this.datalist[i].sell_price;
-                }
-                return total || 0;
-            }*/
-            /*isAll:{
-                get:function(){
-                    var len = this.datalist.length;
-                    for(var i = 0;i < len;i++){
-                        if(!this.value || !this.value[i]){
-                            break;
-                        }
-
-                    }
-                    return (i === len) ? true:false;
-                },
-                set:function(newValue){
-                    var len = this.datalist.length;
-                    for(var i = 0;i < len;i++){
-                        this.value[i] = newValue;
-                    }
-                    // console.log(newValue);
-                    // console.log(this.value);
-                }
-            }*/
+        created(){
+            this.getProductNum()
         },
         methods:{
-            getNum(num,index){
-                // console.log(num,index);
-            },
+            // 支付
             payMoney(){
                 this.$common.Toast('暂无支付接口');
+            },// 获取产品数量和 id
+            getProductNum(){
+                var obj = getProductObject();
+                /*var url = this.$common.apidomain;
+                this.$http.get(url).then(function(res){
+                    if(res.status !== 200){
+                        this.$common.Toast('获取数据失败');
+                        return;
+                    }
+
+                })
+                this.datalist = res.body.message;*/
             }
         }
     }
